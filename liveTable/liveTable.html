@@ -1,0 +1,33 @@
+<div class="ml-4 text-info text-right">
+	Search:<input type="text" ng-model="searchedDatas" class="ml-1" > <!-- used this function before ng-keyup = "updateTableData()" -->
+</div>
+
+<table class="table table-striped text-center">
+	<thead class="thead-light changeCursor">
+		<tr>
+			<th scope="col" >Index</th>
+			<th scope="col" ng-model = "title" ng-click ="setNameAsReferenceVar()">Name &uarr;&darr;</th>
+			<th scope="col" ng-click ="setPriceAsReferenceVar()">Price &uarr;&darr;</th>
+			<th scope="col" ng-click ="setVolumeAsReferenceVar()">Volume (24 hr) &uarr;&darr;</th>
+			<th scope="col" ng-click ="set1hrAsReferenceVar()">% Change (1hr)&uarr;&darr;</th>
+			<th scope="col" ng-click ="set24hrAsReferenceVar()">% Change (24hr)&uarr;&darr;</th>
+			<th scope="col" ng-click ="set7daysAsReferenceVar()">% Change (7 days)&uarr;&darr;</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr ng-repeat= "values in dataArray | filter:searchedDatas | orderBy: referenceVar">
+			<td scope="col">{{$index+1}}</td>
+			<td scope="col">{{values.name}}</td>
+			<td scope="col">{{values.price | currency}}</td> <!--currency filter -->
+			<td scope="col">{{values.volume_24h}}</td>
+			<td scope="col">{{values.percent_change_1h}}</td>
+			<td scope="col">{{values.percent_change_24h}}</td>
+			<td scope="col">{{values.percent_change_7d}}</td>
+		</tr>
+	</tbody>
+	
+
+</table>
+</br>
+<div class="ml-4 text-success" >{{currentTime}}</div>
